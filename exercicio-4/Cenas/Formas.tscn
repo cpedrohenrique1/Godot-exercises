@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://cekflcpoe88t2"]
+
+[ext_resource type="Script" uid="uid://4bji6nxeknfq" path="res://Scripts/Player.gd" id="1_b5hsg"]
+[ext_resource type="Script" uid="uid://jgsx55k4fmaj" path="res://Scripts/Luz.gd" id="2_l3t2s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bw7da"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5hsg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3t2s"]
+metallic = 0.2
+roughness = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_l3t2s"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ere3p"]
+albedo_color = Color(0.5921569, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk3fw"]
+size = Vector3(20, 0.5, 20)
+
+[node name="Formas" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9995754, 0)
+script = ExtResource("1_b5hsg")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.93026394, 0.36689094, 0, -0.36689094, 0.93026394, 0, 1.8735764, 2.4765692)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_bw7da")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_b5hsg")
+surface_material_override/0 = SubResource("StandardMaterial3D_l3t2s")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0027925672, 0.9999961, 0, -0.9999961, 0.0027925672, -0.022426665, 1.5959692, 0.021697521)
+script = ExtResource("2_l3t2s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_l3t2s")
+surface_material_override/0 = SubResource("StandardMaterial3D_ere3p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_yk3fw")
